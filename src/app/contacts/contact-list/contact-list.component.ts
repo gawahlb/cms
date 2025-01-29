@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
-import { ContactDetailComponent } from "../contact-detail/contact-detail.component";
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../contact.model';
+import { ContactItemComponent } from "../contact-item/contact-item.component";
 
 @Component({
   selector: 'app-contact-list',
   imports: [
-    ContactDetailComponent,
-    CommonModule
-  ],
+    CommonModule,
+    ContactItemComponent
+],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.css'
 })
 export class ContactListComponent {
+  @Output() contactSelected = new EventEmitter<Contact>();
+
   contacts: Contact[] = [
     new Contact(
       '1',
@@ -31,4 +33,8 @@ export class ContactListComponent {
       []
     )
   ]
+
+  onSelected(contact: Contact) {
+    this.contactSelected.emit(contact);
+  }
 }

@@ -5,21 +5,10 @@
         </div>
         <div class="panel-body">
             
-            <a 
-                href="#" 
-                class="list-group-item clearfix"
+            <app-contact-item 
                 *ngFor="let contact of contacts"
-            >
-                <div class="pull-left"> 
-                    <h4 class="list-group-item-heading">{{ contact.name }}</h4>
-                </div>
-                <div class="pull-right">
-                    <img 
-                        src="{{ contact.imageUrl }}" 
-                        alt="{{ contact.name }}"
-                        class="img-responsive"
-                        style="max-height: 50px;">
-                </div>
-            </a>
+                [contact]="contact"
+                (contactSelected)="onSelected(contact)">
+            </app-contact-item>
         </div>
 </div>
